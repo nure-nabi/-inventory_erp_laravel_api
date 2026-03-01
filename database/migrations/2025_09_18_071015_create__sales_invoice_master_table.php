@@ -15,9 +15,9 @@ class CreateSalesInvoiceMasterTable extends Migration
     {
         Schema::create('sales_invoice_master', function (Blueprint $table) {
             $table->string('VoucherNo', 50)->primary();//unique constraint
-             $table->date('VDate')->format('Y-m-d');
-            $table->date('VTime')->format('Y-m-d');
-             $table->date('DueDate')->format('Y-m-d');
+             $table->date('VDate');
+            $table->date('VTime');
+             $table->date('DueDate');
             $table->foreignId('LedgerId')
             ->references('LedgerId')
             ->on('general_ledger')
@@ -31,6 +31,7 @@ class CreateSalesInvoiceMasterTable extends Migration
             $table->decimal('CurrencyRate',8, 2);//PaymentType
             $table->decimal('BasicAmount',8, 2);
             $table->decimal('NetAmount',8, 2); // Use boolean for true/false values
+            $table->decimal('Labour',8, 2)->default(0.0); // Use 
             $table->string('PaymentType');
             $table->string('Remarks');
             $table->string('EnterBy', 100);

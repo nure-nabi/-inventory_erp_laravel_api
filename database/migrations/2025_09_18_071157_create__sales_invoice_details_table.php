@@ -49,6 +49,7 @@ class CreateSalesInvoiceDetailsTable extends Migration
             $table->decimal('BasicAmount',8, 2);
             $table->decimal('LabourRate',8,2)->nullable(); // 
             $table->decimal('NetAmount',8, 2); // Use boolean for true/false values
+            $table->decimal('Labour',8, 2)->default(0.0); // Use 
             $table->string('PaymentType');
             $table->string('Remarks')->nullable();
             $table->string('EnterBy', 100);
