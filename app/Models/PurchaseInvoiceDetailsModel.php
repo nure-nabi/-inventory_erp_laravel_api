@@ -25,6 +25,7 @@ class PurchaseInvoiceDetailsModel extends Model
        'Qty',
        'PurchaseRate',
        'BasicAmount',
+       'LabourRate',
        'NetAmount',
        'PaymentType',
        'Remarks',

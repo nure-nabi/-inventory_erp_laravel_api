@@ -49,6 +49,7 @@ class CreatePurchaseInvoiceDetailsTable extends Migration
             $table->decimal('Qty'); //   Consider specifying the length 
             $table->decimal('PurchaseRate'); // Specify length for 
             $table->decimal('BasicAmount',8, 2);
+            $table->decimal('LabourRate',8,2)->nullable(); // 
             $table->decimal('NetAmount',8, 2); // Use boolean for true/
             $table->string('PaymentType');
             $table->string('Remarks')->nullable();

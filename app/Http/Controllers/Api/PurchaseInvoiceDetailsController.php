@@ -338,27 +338,7 @@ public function getProductByVoucherNo($voucherNo)
 
 
 
-public function ledgerCustomerDetails(Request $request)
-{
-    $ledgerSummaries = DB::table('general_ledger')
-        ->leftJoin('purchase_invoice_details', 'general_ledger.LedgerId', '=', 'purchase_invoice_details.LedgerId')
-        ->select(
-            'general_ledger.LedgerId as ledger_id',
-            'general_ledger.GlDesc as ledger_name','general_ledger.GlCategory as ledger_category', // Or whatever columns you have
-            DB::raw('COALESCE(SUM(purchase_invoice_details.BasicAmount), 0) as total_amount')
-        )
-        ->where("general_ledger.GlCategory","Customer")
-         ->orderByDesc('total_amount') // ✅ Sort by total_amount descending
-        ->limit(10)
-        ->groupBy('general_ledger.LedgerId', 'general_ledger.GlDesc','general_ledger.GlCategory')
-        ->get();
 
-    return response()->json([
-        'message' => 'Ledger details fetched successfully.',
-        'success' => true,
-        'data' => $ledgerSummaries
-    ], 200);
-}
 public function ledgerVendorDetails(Request $request)
 {
     $ledgerSummaries = DB::table('general_ledger')

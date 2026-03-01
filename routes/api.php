@@ -87,7 +87,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
          Route::post('/updatePurchaseInvoiceDetails/{VoucherNo}', [PurchaseInvoiceDetailsController::class, 'updatePurchaseInvoiceDetails']); //
           Route::post('/getPurchaseInvoiceByDate', [PurchaseInvoiceDetailsController::class, 'getPurchaseInvoiceByDate']); //
           Route::get('/ledgerVendorDetails', [PurchaseInvoiceDetailsController::class, 'ledgerVendorDetails']); //
-          Route::get('/ledgerCustomerDetails', [PurchaseInvoiceDetailsController::class, 'ledgerCustomerDetails']); //
+         
 
 
           //Sales invoce storeSalesInvoiceDetails 
@@ -96,11 +96,14 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
         Route::delete('/deleteSalesInvoiceMaster/{VoucherNo}', [SalesInvoiceMasterController::class, 'deleteSalesInvoiceMaster']); //
         Route::post('/updateSalesInvoiceMaster', [SalesInvoiceMasterController::class, 'updateSalesInvoiceMaster']); //
          Route::get('/getSalesInvoiceMasterByVoucherNo/{VoucherNo}', [SalesInvoiceMasterController::class, 'getSalesInvoiceMasterByVoucherNo']); //
+         Route::get('/getSalesInvoiceMasterLimit10', [SalesInvoiceMasterController::class, 'getSalesInvoiceMasterLimit10']); //
 
-        //Sales invoce detals 
+        //Sales invoce detals  
          Route::post('/storeSalesInvoiceDetails/{voucherNo}', [SalesInvoiceDetailsController::class, 'storeSalesInvoiceDetails']); //
          Route::get('/getSalesInvoiceVoucher', [SalesInvoiceDetailsController::class, 'getSalesInvoiceVoucher']); //
          
          Route::Delete('/deleteSalesInvoiceDetails/{VoucherNo}', [SalesInvoiceDetailsController::class, 'deleteSalesInvoiceDetails']); //
          Route::post('/updateSalesInvoiceDetails/{VoucherNo}', [SalesInvoiceDetailsController::class, 'updateSalesInvoiceDetails']); //
          Route::get('/getProductSalesInvoiceByVoucherNo/{VoucherNo}', [SalesInvoiceDetailsController::class, 'getProductSalesInvoiceByVoucherNo']); //
+          Route::get('/ledgerCustomerDetails', [SalesInvoiceDetailsController::class, 'ledgerCustomerDetails']); //
+          Route::get('/getSalesInvoiceToday/{VoucherNo}', [SalesInvoiceDetailsController::class, 'getSalesInvoiceToday']); //

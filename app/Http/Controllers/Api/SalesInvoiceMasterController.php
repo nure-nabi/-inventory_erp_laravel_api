@@ -126,6 +126,28 @@ function updateSalesInvoiceMaster(Request $request){
     }
 }
 
+ public function getSalesInvoiceMasterLimit10()
+{
+    $vouchersProduct = SalesInvoiceMasterModel::
+    limit(10)    
+    ->get();
+    
+    // Check if products were found
+    if ($vouchersProduct->isEmpty()) {
+        return response()->json([
+            'message' => 'No products found for the given voucher number.',
+            'success' => false,
+            'data' => []
+        ], 404);
+    }
+    
+    return response()->json([
+        'message' => 'Products fetched successfully.',
+        'success' => true,
+        'data' => $vouchersProduct
+    ], 200);
+}
+
      public function generateSalesInvoiceVoucherNumber()
 {
     $voucherNo = $this->getNextVoucherNumber();

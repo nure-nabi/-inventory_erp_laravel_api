@@ -22,6 +22,7 @@ class SalesInvoiceDetailsModel extends Model
     'Qty',
     'SalesRate',
     'BasicAmount',
+    'LabourRate',
     'NetAmount',
     'PaymentType',
     'Remarks',

@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\SalesInvoiceDetailsModel;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
 class SalesInvoiceDetailsController extends Controller
 {
     public function storeSalesInvoiceDetails(Request $request, $voucherNo)
@@ -96,7 +96,39 @@ class SalesInvoiceDetailsController extends Controller
         ], 500);
     }
 }
+public function ledgerCustomerDetails(Request $request)
+{
+    $ledgerSummaries = DB::table('general_ledger')
+        ->leftJoin('sales_invoice_details', 'general_ledger.LedgerId', '=', 'sales_invoice_details.LedgerId')
+        ->select(
+            'general_ledger.LedgerId as ledger_id',
+            'general_ledger.GlDesc as ledger_name','general_ledger.GlCategory as ledger_category', // Or whatever columns you have
+            DB::raw('COALESCE(SUM(sales_invoice_details.BasicAmount), 0) as total_amount')
+        )
+        ->where("general_ledger.GlCategory","Customer")
+         ->orderByDesc('total_amount') // ✅ Sort by total_amount descending
+        ->limit(10)
+        ->groupBy('general_ledger.LedgerId', 'general_ledger.GlDesc','general_ledger.GlCategory')
+        ->get();
 
+    return response()->json([
+        'message' => 'Ledger details fetched successfully.',
+        'success' => true,
+        'data' => $ledgerSummaries
+    ], 200);
+}
+ public function getSalesInvoiceToday(Request $request)
+{
+    $vouchers = SalesInvoiceDetailsModel::with("product")
+      ->where("VoucherNo",$request->VoucherNo)
+      ->get();
+    
+    return response()->json([
+        'message' => 'Distinct vouchers fetched successfully.',
+        'success' => true,
+        'data' => $vouchers
+    ], 200);
+}
 public function getSalesInvoiceVoucher(Request $request)
 {
     $vouchers = SalesInvoiceDetailsModel::select('VoucherNo')
