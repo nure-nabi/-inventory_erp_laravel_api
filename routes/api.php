@@ -30,15 +30,14 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
  // category save 
-   Route::post('/saveCategory', [CategoryController::class, 'saveCategory']); // 
+   Route::post('/storeCategory', [CategoryController::class, 'storeCategory']); // 
    Route::get('/getCategory', [CategoryController::class, 'getCategory']); // all 
    Route::post('/updateCategory/{CategoryId}', [CategoryController::class, 'updateCategory']); // all updateCategorydeleteCategoryById
    Route::delete('/deleteCategoryById/{CategoryId}', [CategoryController::class, 'deleteCategoryById']); // all updateCate 
-    
     Route::post('/updateStatusCategory/{CategoryId}', [CategoryController::class, 'updateStatusCategory']); // all updateCate 
 
     //Sub Category  
-    Route::post('/saveSubCategory', [SubCategoryController::class, 'store']); //
+    Route::post('/storeSubCategory', [SubCategoryController::class, 'storeSubCategory']); //
     Route::get('/getSubCategory', [SubCategoryController::class, 'getSubCategory']); //
     Route::get('/getCateSubAll', [SubCategoryController::class, 'getCateSubAll']); //
     Route::delete('/deleteSubCategoryById/{ProductSubGrpId}', [SubCategoryController::class, 'deleteSubCategoryById']); // all updateCate 
@@ -55,21 +54,21 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
      Route::post('/updateStatusLedger/{LedgerId}', [GeneralLedgerController::class, 'updateStatusLedger']); //
 
      //Unit      
-      Route::post('/saveUnit', [UnitController::class, 'saveUnit']); //
+      Route::post('/storeUnit', [UnitController::class, 'storeUnit']); //
       Route::get('/getUnit', [UnitController::class, 'getUnit']);
       Route::delete('/deleteUnitById/{UnitId}', [UnitController::class, 'deleteUnitById']);
       Route::post('/updateUnit/{UnitId}', [UnitController::class, 'updateUnit']);
       Route::post('/updateStatusUnit/{UnitId}', [UnitController::class, 'updateStatusUnit']);
  
       //Godown    updateGodown
-       Route::post('/saveGodown', [GodownController::class, 'saveGodown']); //
+       Route::post('/storeGodown', [GodownController::class, 'storeGodown']); //
        Route::get('/getGodown', [GodownController::class, 'getGodown']); //
         Route::delete('/deleteGodownById/{GodownId}', [GodownController::class, 'deleteGodownById']);
          Route::post('/updateGodown/{GodownId}', [GodownController::class, 'updateGodown']);
         Route::post('/updateStatusGodown/{GodownId}', [GodownController::class, 'updateStatusGodown']);
 
         //Product    
-       Route::post('/saveProduct', [ProductController::class, 'store']); //
+       Route::post('/storeProduct', [ProductController::class, 'storeProduct']); //
        Route::get('/getProduct', [ProductController::class, 'getProduct']); //
 
        //Purchase storePurchaseMaster

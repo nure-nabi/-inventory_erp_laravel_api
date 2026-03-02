@@ -8,59 +8,72 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    
-     public function store(Request $request)
-      {
-        
-          //validate fields
-          $attrs = $request->validate([
-              'ProductDesc' => 'required|string',
-              
-          ]);//
-        //  $image = $this->saveImage($request->PSGImg, 'product_sub_group');
-            $product =  ProductModel::create([
-              'ProductDesc' => $attrs['ProductDesc'],
-              'ProductShortName' =>$attrs['ProductDesc'],
-              'ProductGrpId' => $request->ProductGrpId,
-              'ProductSubGrpId' => $request->ProductSubGrpId,
-              'BuyRate' => $request->BuyRate,
-              'SalesRate' => $request->SalesRate,
-              'Status' => $request->Status,
-              'EnterBy' => $request->EnterBy,
-              'EnterDate' => $request->EnterDate,
-              'Gadget' => $request->Gadget,
-              'PImage' => "no",
-          ]);
 
-         if ($product) {
-            return response([
-                'message' => 'Product save  successfully',
-                'success' => true,
-            ]);
-        } else {
-            return response([
-                'message' => 'Not product save ' ,
+    public function storeProduct(Request $request)
+    {
+
+        try {
+            if ($request->Tag == "NEW") {
+                $attrs = $request->validate([
+                    'ProductDesc' => 'required|string',
+
+                ]);
+                $product = ProductModel::create([
+                    'ProductDesc' => $attrs['ProductDesc'],
+                    'ProductShortName' => $attrs['ProductDesc'],
+                    'ProductGrpId' => $request->ProductGrpId,
+                    'ProductSubGrpId' => $request->ProductSubGrpId,
+                    'BuyRate' => $request->BuyRate,
+                    'SalesRate' => $request->SalesRate,
+                    'Status' => $request->Status,
+                    'EnterBy' => $request->EnterBy,
+                    'EnterDate' => $request->EnterDate,
+                    'Gadget' => $request->Gadget,
+                    'PImage' => "no",
+                ]);
+
+                if ($product) {
+                    return response([
+                        'message' => 'Product save  successfully',
+                        'success' => true,
+                    ]);
+                } else {
+                    return response([
+                        'message' => 'Not product save ',
+                        'success' => false,
+                    ], 400);
+                }
+            } else if ($request->Tag == "EDIT") {
+
+            } else if ($request->Tag == "DELETE") {
+
+            }
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'Failed to fetch unit.',
                 'success' => false,
-            ], 400);
+                'error' => $e->getMessage()
+            ], 500);
         }
-      }
+    }
 
-      function getProduct(Request $request){
-       $product = ProductModel::with("category","subCategory")
-       ->get();
+    function getProduct(Request $request)
+    {
+        $product = ProductModel::with("category", "subCategory")
+            ->get();
 
-       if ($product) {
+        if ($product) {
             return response([
                 'message' => 'Product fetch  successfully',
                 'success' => true,
-                'data'=>$product
+                'data' => $product
             ]);
         } else {
             return response([
-                'message' => 'Not product ' ,
+                'message' => 'Not product ',
                 'success' => false,
-                'data'=> []
+                'data' => []
             ], 400);
         }
-      }
+    }
 }
