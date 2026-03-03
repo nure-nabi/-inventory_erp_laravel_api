@@ -45,7 +45,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
       Route::post('/updateSubCategory/{ProductSubGrpId}', [SubCategoryController::class, 'updateSubCategory']); // all updateCategorydeleteCategoryById
 
     //ledger     
-    Route::post('/saveGeneralLedger', [GeneralLedgerController::class, 'saveGeneralLedger']); //
+    Route::post('/storeLedger', [GeneralLedgerController::class, 'storeLedger']); //
      Route::get('/getLedgerVendor', [GeneralLedgerController::class, 'getLedgerVendor']); //
      Route::get('/getLedgerCustomer', [GeneralLedgerController::class, 'getLedgerCustomer']); //
      Route::get('/getLedger', [GeneralLedgerController::class, 'getLedger']); //
