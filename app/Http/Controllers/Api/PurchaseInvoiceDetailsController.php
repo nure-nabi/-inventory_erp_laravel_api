@@ -269,17 +269,17 @@ public function storePurchaseDetails2(Request $request, $voucherNo)
 }
 
 
-  public function deletePurchaseInvoiceDetails(Request $request,$voucherNo)
+  public function deletePurchaseInvoiceDetails(Request $request)
     {
     try {
-        if (!$voucherNo) {
+        if (!$request->voucherNo) {
             return response([
                 'message' => 'VoucherNo is required',
                 'success' => false,
             ], 400);
         }
         // Delete the record
-        $deletePIM = PurchaseInvoiceDetailsModel::where("VoucherNo", $voucherNo)->delete();
+        $deletePIM = PurchaseInvoiceDetailsModel::where("VoucherNo", $request->voucherNo)->delete();
         if ($deletePIM) {
             return response([
                 'message' => 'Purchase invoice details deleted successfully.',

@@ -74,7 +74,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
        //Purchase storePurchaseMaster
         Route::post('/storePurchaseMaster', [PurchaseInvoiceMasterController::class, 'storePurchaseMaster']); //
         Route::get('/generateVoucherNumber', [PurchaseInvoiceMasterController::class, 'generateVoucherNumber']); //
-        Route::delete('/deletePurchaseInvoiceMaster/{VoucherNo}', [PurchaseInvoiceMasterController::class, 'deletePurchaseInvoiceMaster']); //
+        Route::post('/deletePurchaseInvoiceMaster', [PurchaseInvoiceMasterController::class, 'deletePurchaseInvoiceMaster']); //
          Route::post('/updatePurchaseMaster', [PurchaseInvoiceMasterController::class, 'updatePurchaseMaster']); //
           Route::get('/getPurchaseInvoiceMasterByVoucherNo/{VoucherNo}', [PurchaseInvoiceMasterController::class, 'getPurchaseInvoiceMasterByVoucherNo']); //
 
@@ -82,7 +82,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
         Route::post('/storePurchaseDetails2/{VoucherNo}', [PurchaseInvoiceDetailsController::class, 'storePurchaseDetails2']); //
         Route::get('/getVoucher', [PurchaseInvoiceDetailsController::class, 'getVoucher']); //
         Route::get('/getProductByVoucherNo/{VoucherNo}', [PurchaseInvoiceDetailsController::class, 'getProductByVoucherNo']); //
-        Route::delete('/deletePurchaseInvoiceDetails/{VoucherNo}', [PurchaseInvoiceDetailsController::class, 'deletePurchaseInvoiceDetails']); //
+        Route::post('/deletePurchaseInvoiceDetails', [PurchaseInvoiceDetailsController::class, 'deletePurchaseInvoiceDetails']); //
          Route::post('/updatePurchaseInvoiceDetails/{VoucherNo}', [PurchaseInvoiceDetailsController::class, 'updatePurchaseInvoiceDetails']); //
           Route::post('/getPurchaseInvoiceByDate', [PurchaseInvoiceDetailsController::class, 'getPurchaseInvoiceByDate']); //
           Route::get('/ledgerVendorDetails', [PurchaseInvoiceDetailsController::class, 'ledgerVendorDetails']); //

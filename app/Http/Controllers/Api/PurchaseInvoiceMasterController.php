@@ -102,17 +102,17 @@ class PurchaseInvoiceMasterController extends Controller
        ]);
    }
    
-     public function deletePurchaseInvoiceMaster(Request $request,$voucherNo)
+     public function deletePurchaseInvoiceMaster(Request $request)
     {
     try {
-        if (!$voucherNo) {
+        if (!$request->voucherNo) {
             return response([
                 'message' => 'VoucherNo is required',
                 'success' => false,
             ], 400);
         }
         // Delete the record
-        $deletePIM = PurchaseInvoiceMasterModel::where("VoucherNo", $voucherNo)->delete();
+        $deletePIM = PurchaseInvoiceMasterModel::where("VoucherNo", $request->voucherNo)->delete();
         if ($deletePIM) {
             return response([
                 'message' => 'Purchase invoice deleted successfully.',
