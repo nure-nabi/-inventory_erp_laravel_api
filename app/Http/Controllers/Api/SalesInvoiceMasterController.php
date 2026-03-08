@@ -95,20 +95,20 @@ function updateSalesInvoiceMaster(Request $request){
            'VoucherNo' => $request->VoucherNo
        ]);
    }
-    public function deleteSalesInvoiceMaster(Request $request,$voucherNo)
+    public function deleteSalesInvoiceMaster(Request $request)
     {
     try {
-        if (!$voucherNo) {
+        if (!$request->VoucherNo) {
             return response([
                 'message' => 'VoucherNo is required',
                 'success' => false,
             ], 400);
         }
         // Delete the record
-        $deletePIM = SalesInvoiceMasterModel::where("VoucherNo", $voucherNo)->delete();
+        $deletePIM = SalesInvoiceMasterModel::where("VoucherNo", $request->VoucherNo)->delete();
         if ($deletePIM) {
             return response([
-                'message' => 'Purchase invoice deleted successfully.',
+                'message' => 'Sales invoice deleted successfully.',
                 'success' => true,
                 //'deleted_count' => $deletePIM
             ], 200);
@@ -147,6 +147,8 @@ function updateSalesInvoiceMaster(Request $request){
         'data' => $vouchersProduct
     ], 200);
 }
+
+
 
      public function generateSalesInvoiceVoucherNumber()
 {

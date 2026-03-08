@@ -89,10 +89,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
          
 
 
-          //Sales invoce storeSalesInvoiceDetails 
+          //Sales invoce getPurchaseInvoiceMasterByVoucherNo 
           Route::get('/generateSalesInvoiceVoucherNumber', [SalesInvoiceMasterController::class, 'generateSalesInvoiceVoucherNumber']); //
         Route::post('/storeSalesInvoiceMaster', [SalesInvoiceMasterController::class, 'storeSalesInvoiceMaster']); //
-        Route::delete('/deleteSalesInvoiceMaster/{VoucherNo}', [SalesInvoiceMasterController::class, 'deleteSalesInvoiceMaster']); //
+        Route::post('/deleteSalesInvoiceMaster', [SalesInvoiceMasterController::class, 'deleteSalesInvoiceMaster']); //
         Route::post('/updateSalesInvoiceMaster', [SalesInvoiceMasterController::class, 'updateSalesInvoiceMaster']); //
          Route::get('/getSalesInvoiceMasterByVoucherNo/{VoucherNo}', [SalesInvoiceMasterController::class, 'getSalesInvoiceMasterByVoucherNo']); //
          Route::get('/getSalesInvoiceMasterLimit10', [SalesInvoiceMasterController::class, 'getSalesInvoiceMasterLimit10']); //
@@ -101,8 +101,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
          Route::post('/storeSalesInvoiceDetails/{voucherNo}', [SalesInvoiceDetailsController::class, 'storeSalesInvoiceDetails']); //
          Route::get('/getSalesInvoiceVoucher', [SalesInvoiceDetailsController::class, 'getSalesInvoiceVoucher']); //
          
-         Route::Delete('/deleteSalesInvoiceDetails/{VoucherNo}', [SalesInvoiceDetailsController::class, 'deleteSalesInvoiceDetails']); //
-         Route::post('/updateSalesInvoiceDetails/{VoucherNo}', [SalesInvoiceDetailsController::class, 'updateSalesInvoiceDetails']); //
+         Route::post('/deleteSalesInvoiceDetails', [SalesInvoiceDetailsController::class, 'deleteSalesInvoiceDetails']); //
+         Route::post('/updateSalesInvoiceDetails', [SalesInvoiceDetailsController::class, 'updateSalesInvoiceDetails']); //
          Route::get('/getProductSalesInvoiceByVoucherNo/{VoucherNo}', [SalesInvoiceDetailsController::class, 'getProductSalesInvoiceByVoucherNo']); //
           Route::get('/ledgerCustomerDetails', [SalesInvoiceDetailsController::class, 'ledgerCustomerDetails']); //
           Route::get('/getSalesInvoiceToday/{VoucherNo}', [SalesInvoiceDetailsController::class, 'getSalesInvoiceToday']); //
+          Route::get('/getVoucherInvoice', [SalesInvoiceDetailsController::class, 'getVoucherInvoice']); //
+
+
+          //
